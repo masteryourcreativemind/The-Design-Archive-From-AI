@@ -1,0 +1,21 @@
+{
+  "name": "the-design-archive-from-ai",
+  "version": "1.0.0",
+  "description": "A Node.js-based website creator for assembling and customizing sites from modular blocks with SEO optimization.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "dependencies": {
+    "express": "^4.18.4",
+    "multer": "^1.4.5-lts.1",
+    "cheerio": "^1.0.0-rc.12",
+    "sass": "^1.69.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  },
+  "author": "",
+  "license": "MIT"
+}
