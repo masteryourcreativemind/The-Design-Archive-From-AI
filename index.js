@@ -79,7 +79,39 @@ app.post('/api/upload-block', upload.single('block'), async (req, res) => {
     console.error(err);
     res.status(500).json({ error: 'An error occurred while processing the block.' });
   }
+})
+// API route to retrieve themes from themes.json
+app.get('/api/themes', (req, res) => {
+  const themesPath = path.join(__dirname, 'public', 'themes.json');
+  try {
+    const themesData = fs.readFileSync(themesPath, 'utf-8');
+    res.setHeader('Content-Type', 'application/json');
+    res.send(themesData);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Unable to load themes' });
+  }
 });
+
+// API route to store SEO score/keywords
+app.post('/api/seo-score', (req, res) => {
+  const { keywords } = req.body;
+  const seoFilePath = path.join(__dirname, 'seo-score.json');
+  try {
+    let data = [];
+    if (fs.existsSync(seoFilePath)) {
+      const content = fs.readFileSync(seoFilePath, 'utf-8');
+      data = JSON.parse(content || '[]');
+    }
+    data.push({ timestamp: Date.now(), keywords });
+    fs.writeFileSync(seoFilePath, JSON.stringify(data, null, 2));
+    res.json({ message: 'SEO keywords saved' });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Unable to save SEO keywords' });
+  }
+});
+;
 
 // Start the server
 app.listen(PORT, () => {
