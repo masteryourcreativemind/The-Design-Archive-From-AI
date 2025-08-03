@@ -1,25 +1,69 @@
+:root {
+  --background: #f5f5f5;
+  --foreground: #333;
+  --header-bg: #252e48;
+  --header-text: #fff;
+  --section-bg: #fff;
+  --section-shadow: rgba(0,0,0,0.1);
+  --button-bg: #252e48;
+  --button-text: #fff;
+  --nav-bg: var(--header-bg);
+  --nav-text: var(--header-text);
+  --accent-color: #3498db;
+}
+
 body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f5f5f5;
-  color: #333;
+  background-color: var(--background);
+  color: var(--foreground);
 }
 
 header {
-  background-color: #252e48;
-  color: #fff;
+  background-color: var(--header-bg);
+  color: var(--header-text);
   padding: 20px;
   text-align: center;
+}
+
+/* Navigation container; dynamic layout will be applied via JS */
+nav#site-nav {
+  display: flex;
+  gap: 15px;
+  padding: 10px;
+  background-color: var(--nav-bg);
+  color: var(--nav-text);
+}
+
+nav#site-nav.vertical {
+  flex-direction: column;
+  width: 200px;
+}
+
+nav#site-nav.horizontal {
+  flex-direction: row;
+  justify-content: center;
+}
+
+nav#site-nav a {
+  color: var(--nav-text);
+  text-decoration: none;
+  padding: 8px 12px;
+}
+
+nav#site-nav a:hover {
+  background-color: var(--accent-color);
+  color: #fff;
 }
 
 section {
   margin: 20px auto;
   max-width: 800px;
-  background-color: #fff;
+  background-color: var(--section-bg);
   padding: 20px;
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px var(--section-shadow);
 }
 
 form label {
@@ -33,33 +77,41 @@ form textarea,
 form select {
   width: 100%;
   padding: 8px;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
 }
 
-form input[type="file"] {
-  margin-bottom: 12px;
-}
-
 form button {
-  background-color: #007bff;
-  color: #fff;
+  background-color: var(--button-bg);
+  color: var(--button-text);
+  padding: 10px 20px;
   border: none;
-  padding: 10px 16px;
   border-radius: 4px;
   cursor: pointer;
 }
 
 form button:hover {
-  background-color: #0056b3;
+  opacity: 0.9;
 }
 
-.block-list {
-  margin-top: 20px;
+#blocks-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
 .block-item {
-  padding: 8px;
-  border-bottom: 1px solid #eee;
+  flex: 1 0 45%;
+  background-color: var(--section-bg);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px var(--section-shadow);
+  padding: 10px;
+}
+
+#live-feed {
+  margin-top: 20px;
+  padding: 10px;
+  border: 1px dashed var(--accent-color);
+  background-color: rgba(52,152,219,0.1);
 }
