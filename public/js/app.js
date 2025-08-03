@@ -1,4 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Initialize theme manager, questions, and SEO tracker
+if (typeof loadThemes === 'function') loadThemes();
+if (typeof initQuestions === 'function') initQuestions();
+if (typeof initSeoTracker === 'function') initSeoTracker();
+
   const contextForm = document.getElementById('contextForm');
   if (contextForm) {
     contextForm.addEventListener('submit', async (e) => {
@@ -10,9 +15,14 @@ document.addEventListener('DOMContentLoaded', () => {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ siteTitle, siteDescription }),
-        });
+  
         if (res.ok) {
+   
+
           alert('Site context saved.');
+                  // Update SEO tracker after saving context
+        if (typeof seoTracker !== 'undefined' && typeof seoTracker.update === 'function') seoTracker.update();
+
         } else {
           alert('Error saving context.');
         }
@@ -43,12 +53,20 @@ document.addEventListener('DOMContentLoaded', () => {
           fileInput.value = '';
           await loadBlocks();
           alert('Block uploaded successfully.');
+          
+
+      // Update SEO tracker after block upload
+if (typeof seoTracker !== 'undefined' && typeof seoTracker.update === 'function') seoTracker.update();
+
+
         } else {
           alert('Error uploading block.');
         }
       } catch (err) {
         console.error(err);
         alert('Network error uploading block.');
+     
+
       }
     });
   }
