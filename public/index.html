@@ -12,6 +12,15 @@
     <h1>The Design Archive Builder</h1>
     <p>Create beautiful websites using modular design blocks, with SEO optimization.</p>
   </header>
+  <section class="theme-selector">
+  <label for="theme-select">Select Theme:</label>
+  <select id="theme-select"></select>
+</section>
+
+<nav id="site-nav" class="vertical">
+  <!-- Navigation items will be inserted here -->
+</nav>
+
 
   <section class="seo">
     <h2>Site Context for SEO</h2>
@@ -39,8 +48,18 @@
     <ul id="block-list">
       <!-- Block items will be appended here -->
     </ul>
-  </section>
+  <</section><
+    <section id="live-feed" class="live-feed">
+  <h2>SEO Suggestions</h2>
+  <ul id="seo-suggestions"></ul>
+</section>
 
-  <script src="js/app.js"></script>
-</body>
+<div id="question-modal" class="modal"></div>
+
+<script src="js/themeManager.js"></script>
+<script src="js/questions.js"></script>
+<script src="js/seoTracker.js"></script>
+<script src="js/app.js"></script>
+
+
 </html>
